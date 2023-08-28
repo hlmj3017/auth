@@ -126,4 +126,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'accounts.User'
+# accounts 는 앱
+# User는 상속받을 클래스 
+
+# AUTH_USER_MODEL 장고의 기본 있는 설정
 # 장고에 기본있는 설정 -> 초기값을 변경

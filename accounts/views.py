@@ -12,6 +12,7 @@ def signup(request):
             return redirect('accounts:signup')
 
     else:
+        # user가 id와 password를 입력받는 빈 폼 
         form = CustomUserCreationForm()
         
 
@@ -27,7 +28,13 @@ def login(request):
         form = CustomAuthenticationForm(request, request.POST) # 기존 정보를 request에 덮어씀
 
         if form.is_valid():
-            auth_login(request, form.get_user()) # get_user: authentication에만 있는 기능 / 아이디를 찾아서 forms에 불러오는 것
+            # form인증이 되었다면, 
+            # form의 get_user를 넣어주는 함수를 불러온다.
+            auth_login(request, form.get_user()) # get_user: authentication에만 있는 기능 / 아이디를 찾아서 form에 불러오는 것
+            # get_user 해당하는 아이디를 찾아서
+            # form에 불러와 
+            # 요청값에 씌움
+            # login으로 하겠다. 
             return redirect('accounts:login')
 
 
