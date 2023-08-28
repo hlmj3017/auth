@@ -24,10 +24,10 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':
-        form = CustomAuthenticationForm(request, request.POST)
+        form = CustomAuthenticationForm(request, request.POST) # 기존 정보를 request에 덮어씀
 
         if form.is_valid():
-            auth_login(request, form.get_user()) # get_user: authentication에만 있는 기능 
+            auth_login(request, form.get_user()) # get_user: authentication에만 있는 기능 / 아이디를 찾아서 forms에 불러오는 것
             return redirect('accounts:login')
 
 
