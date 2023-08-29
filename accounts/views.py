@@ -35,7 +35,14 @@ def login(request):
             # form에 불러와 
             # 요청값에 씌움
             # login으로 하겠다. 
-            return redirect('accounts:login')
+           
+            # http://127.0.0.1:8000/accounts/login/?next=/articles/create/
+
+            next_url = request.GET.get('next')  # => /articles/create/
+
+            return redirect(next_url or 'articles:index')
+            # next 인자가 url에 있을 때 => '/articles/create/' or 'articles:index'
+            # next 인자가 url에 없을 때 => None or 'articles:index'
 
 
     else:
