@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-
+{% load bootstrap5 %}
 
 {% block body %}
 
 <!-- 보내는 경로 -->
 <form action="" method="POST"> 
   {% csrf_token %}
-  {{form}}
+  {% bootstrap_form form %}
   <input type="submit">
 
 </form>

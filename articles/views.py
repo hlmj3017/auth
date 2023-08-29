@@ -27,7 +27,7 @@ def create(request):
         form = ArticleForm(request.POST)
         if form.is_valid():                   # title, content는 request.POST에 들어있고 user는 들어있지 않아서 따로 넣어주어야 함
             article = form.save(commit=False) # 잠깐 멈춤
-            article.user = request.user       # 로그인한 사람 정보를 입력후
+            article.user = request.user       # 로그인한 사람 정보를 입력후 / user 대신 user_id 이렇게 사용해도 됨
             article.save()                    # 저장
             return redirect('articles:index')
 

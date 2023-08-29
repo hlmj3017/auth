@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'accounts',
-    'articles',
+    'articles',   # 우리가 설치
+
+    'bootstrap5', # 가져온거
 ]
 
 MIDDLEWARE = [

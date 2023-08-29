@@ -5,11 +5,16 @@ from django.contrib.auth import logout as auth_logout
 # Create your views here.
 
 def signup(request):
+    # 로그인했는지
+    if request.user.is_authenticated:
+        return redirect('articles:index')
+
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:signup')
+        form = CustomUserCreationForm(request.POST) # request.POST: 사용자가 입력한 데이터
+        if form.is_valid():             # 데이터를 검증 후에 저장해야 함
+            user = form.save()          # user 객체 하나를 저장
+            auth_login(request, user)
+            return redirect('articles:index')
 
     else:
         # user가 id와 password를 입력받는 빈 폼 
@@ -20,7 +25,7 @@ def signup(request):
         'form': form,
     }
 
-    return render(request, 'signup.html', context)
+    return render(request, 'account_form.html', context)
 
 
 def login(request):
@@ -52,7 +57,7 @@ def login(request):
         'form': form,
     }
 
-    return render(request, 'login.html', context)
+    return render(request, 'account_form.html', context)
 
 
 def logout(request):
