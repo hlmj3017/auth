@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Article     # index
-from .forms import ArticleForm  # create
+from .forms import ArticleForm, CommentForm  # create
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -9,9 +9,11 @@ from django.contrib.auth.decorators import login_required
 def index(request):
 
     articles = Article.objects.all()  # 전체 게시물 조회
+    form = CommentForm()
 
     context = {
         'articles':articles,          # context에 전체 게시물 담고
+        'form': form,
     }
 
     return render(request, 'index.html', context)
@@ -39,3 +41,18 @@ def create(request):
     }
 
     return render(request, 'form.html', context)
+
+
+
+def comment_create(request, article_id):
+    article = Article.objects.get(id=article_id)
+
+    form = CommentForm(request.POST)
+
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.user = request.user  # 어떤 사용자
+        comment.article = article    # 어떤 게시물
+        comment.save()
+
+        return redirect('articles:index')
