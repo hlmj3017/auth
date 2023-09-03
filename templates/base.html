@@ -21,13 +21,13 @@
             <a class="nav-link" href="{% url 'accounts:logout' %}">logout</a>
             <a class="nav-link" href="{% url 'articles:create' %}">Create</a>
             <a class="nav-link disabled">{{user}}</a>  
+            <!-- {{user}} : 현재 로그인한 사람 정보 출력 -->
 
           {% else %}
             <a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
             <a class="nav-link" href="{% url 'accounts:login' %}">login</a>
 
           {% endif %}
-          <!-- {{user}} : 현재 로그인한 사람 정보 출력 -->
         </div>
       </div>
     </div>

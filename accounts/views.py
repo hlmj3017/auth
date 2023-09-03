@@ -40,14 +40,15 @@ def login(request):
             # form에 불러와 
             # 요청값에 씌움
             # login으로 하겠다. 
-           
             # http://127.0.0.1:8000/accounts/login/?next=/articles/create/
 
+            # 로그인 후 리디렉션 처리를 담당
             next_url = request.GET.get('next')  # => /articles/create/
+            # 로그인 후 사용자를 리디렉션해야 하는 다음 페이지의 경로를 저장하는 데 사용
 
             return redirect(next_url or 'articles:index')
-            # next 인자가 url에 있을 때 => '/articles/create/' or 'articles:index'
-            # next 인자가 url에 없을 때 => None or 'articles:index'
+            # next 인자가 url에 있을 때 => '/articles/create/' or 'articles:index' -> '/articles/create/'
+            # next 인자가 url에 없을 때 => None or 'articles:index' -> 'articles:index'
 
 
     else:
